@@ -1,13 +1,15 @@
-100.times do |i|
-	if i%3==0 && i%5==0
+101.times do |i|
+next if i==0
+case 
+	when i%3==0 && i%5==0
 		puts "fizzbuzz"
-	elsif
-		i%3==0
+
+	when i%3==0
 		puts "fizz"
-		elsif
-		i%5==0
+
+	when i%5==0 
 		puts "buzz"
-			else
-			puts i
+	else
+		puts i
 	end
 end
