@@ -3,6 +3,9 @@
 
 class String
   def count_sentences
-    # code goes here
+    self.count "/.?!/"
   end
 end
+
+puts "Good morning. Today is Friday! How's it going?".count_sentences # => 3
+puts "".count_sentences # => 0
