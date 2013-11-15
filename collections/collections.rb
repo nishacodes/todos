@@ -1,33 +1,84 @@
 Collections Practice
  
-1. sort the following array in ascending order
-  ["blake", "ashley", "scott"]
+# 1. sort the following array in ascending order
+#   ["blake", "ashley", "scott"]
+
+["blake", "ashley", "scott"].sort
+
+# 2. sort the following array in descending order
+#   ["blake", "ashley", "scott"]
+
+["blake", "ashley", "scott"].sort { |x,y| y <=> x } 
+
+# 3. put the following array in reverse order
+#   ["blake", "ashley", "scott"]
+
+["blake", "ashley", "scott"].reverse
+
+# 4. grab the second element in the array
+#   ["blake", "ashley", "scott"]
+
+["blake", "ashley", "scott"][1]
+
+# 5. print each element of the array to the console
+#   ["blake", "ashley", "scott"]
+
+puts ["blake", "ashley", "scott"]
+
+# 6. create a new array in the following order
+#   ["blake", "ashley", "scott"] 
+#   should transform into
+#   ["blake", "scott", "ashley"]
+
+array = ["blake", "ashley", "scott"]
+array.delete("ashley") 
+array << "ashley"
+
+# 7. using the following array create a hash where the elements in the array are the keys and
+#    the values of the hash are those elements with the 3rd character changed to a dollar sign.
+#   ["blake", "ashley", "scott"]
+
+hash = {}
+["blake", "ashley", "scott"].each do |name|
+  hash[name] = [name][0]  
+end
+hash.each do |name, name2|
+  name2[2] = "$"
+end
 
 
+# 8. create a hash with two keys, "greater_than_10", "less_than_10" and their values will be an array
+#  of any numbers greater than 10 or less than 10 in the following array
+#   [100, 1000, 5, 2, 3, 15, 1, 1, 100 ]
 
+hash = {}
+hash[:greater_than_10] = [100, 1000, 5, 2, 3, 15, 1, 1, 100 ].keep_if {|i| i > 10 }
+hash[:less_than_10] = [100, 1000, 5, 2, 3, 15, 1, 1, 100 ].keep_if {|i| i < 10 }
+# => hash = {:greater_than_10=>[100, 1000, 15, 100], :less_than_10=>[5, 2, 3, 1, 1]}
+      
 
-2. sort the following array in descending order
-  ["blake", "ashley", "scott"]
-3. put the following array in reverse order
-  ["blake", "ashley", "scott"]
-4. grab the second element in the array
-  ["blake", "ashley", "scott"]
-5. print each element of the array to the console
-  ["blake", "ashley", "scott"]
-6. create a new array in the following order
-  ["blake", "ashley", "scott"] 
-  should transform into
-  ["blake", "scott", "ashley"]
-7. using the following array create a hash where the elements in the array are the keys and the values of the hash are those elements with the 3rd character changed to a dollar sign.
-  ["blake", "ashley", "scott"]
-8. create a hash with two keys, "greater_than_10", "less_than_10" and their values will be an array of any numbers greater than 10 or less than 10 in the following array
-  [100, 1000, 5, 2, 3, 15, 1, 1, 100 ]
 9. find all the winners and put them in an array
   {:blake => "winner", :ashley => "loser", :caroline => "loser", :carlos => "winner"}
-10. add the following arrays
-  [1,2,3] and [5,9,4]
+
+wl = {:blake => "winner", :ashley => "loser", :caroline => "loser", :carlos => "winner"}
+array = []
+wl.each do |person, winnerloser|
+  array << wl[:person]=:winnerloser if winnerloser == "winner"
+end
+# error: cant add new key into hash during iteration
+
+# 10. add the following arrays
+#   [1,2,3] and [5,9,4]
+
+[1,2,3].concat([5,9,4])
+
 11. find all words that begin with "a" in the following array
   ["apple", "orange", "pear", "avis", "arlo", "ascot" ]
+
+words = ["apple", "orange", "pear", "avis", "arlo", "ascot" ]
+
+words.match(/^a/)
+
 11. sum all the numbers in the following array
   [11,4,7,8,9,100,134]
 12. Add an "s" to each word in the array except for the 2nd element in the array?
