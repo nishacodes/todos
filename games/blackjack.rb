@@ -31,20 +31,19 @@ class Blackjack
 		@handtotal = 0
 		@hitorstay = "h"
 		@deal = ""
-		@hits = 0
+		# @hits = 0
 		puts "Let's play Blackjack. I'll deal you two cards. Ready? (y/n)"
 	end
 
 	def deal
 		@deal = gets.chomp
-		@hits = 0
+		# @hits = 0
 		case
   		when @deal == "y"		
 				@card1 = rand(1..11)
 				@card2 = rand(1..11)
 				@handtotal = @card1 + @card2
 				puts "You got #{@card1} and #{@card2}, which is #{@handtotal} total."
-				puts "hits: #{@hits}, hitorstay: #{@hitorstay}"
 				blackjack?
 			when @deal == "n"
 				puts "Okay fine, have a nice day."
@@ -57,7 +56,7 @@ class Blackjack
 	def hitorstay
 		case 
 			when @hitorstay == "h"
-				@hits += 1
+				# @hits += 1
 				extracard = rand(1..11)
 				@handtotal += extracard
 				puts "Now you got #{extracard}. That's #{@handtotal} total."
@@ -84,9 +83,9 @@ class Blackjack
 				@hitorstay = "h"
 				playagain
 			when @handtotal < 21 && @hitorstay!="s"
-					puts "Do you want to HIT or STAY? (h/s)"
-					@hitorstay	= gets.chomp
-					hitorstay
+				puts "Do you want to HIT or STAY? (h/s)"
+				@hitorstay	= gets.chomp
+				hitorstay
 		end
 	end
 
@@ -95,16 +94,16 @@ class Blackjack
 		deal
 	end
 
-	def hitcount
-		case 
-			when @hits < 2
-				deal
-			when @hits > 2
-				puts "You are only allowed to hit twice."
-				@hitorstay = "s"
-				hitorstay
-			end
-	end
+	# def hitcount
+	# 	case 
+	# 		when @hits < 2
+	# 			deal
+	# 		when @hits > 2
+	# 			puts "You are only allowed to hit twice."
+	# 			@hitorstay = "s"
+	# 			hitorstay
+	# 		end
+	# end
 
 end
 
