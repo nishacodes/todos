@@ -46,6 +46,7 @@ hash.each do |name, name2|
   name2[2] = "$"
 end
 
+puts hash
 
 # 8. create a hash with two keys, "greater_than_10", "less_than_10" and their values will be an array
 #  of any numbers greater than 10 or less than 10 in the following array
@@ -54,18 +55,19 @@ end
 hash = {}
 hash[:greater_than_10] = [100, 1000, 5, 2, 3, 15, 1, 1, 100 ].keep_if {|i| i > 10 }
 hash[:less_than_10] = [100, 1000, 5, 2, 3, 15, 1, 1, 100 ].keep_if {|i| i < 10 }
-# => hash = {:greater_than_10=>[100, 1000, 15, 100], :less_than_10=>[5, 2, 3, 1, 1]}
-      
 
-9. find all the winners and put them in an array
-  {:blake => "winner", :ashley => "loser", :caroline => "loser", :carlos => "winner"}
+puts hash      
 
-wl = {:blake => "winner", :ashley => "loser", :caroline => "loser", :carlos => "winner"}
-array = []
-wl.each do |person, winnerloser|
-  array << wl[:person]=:winnerloser if winnerloser == "winner"
+# 9. find all the winners and put them in an array
+#   {:blake => "winner", :ashley => "loser", :caroline => "loser", :carlos => "winner"}
+
+players = {:blake => "winner", :ashley => "loser", :caroline => "loser", :carlos => "winner"}
+winners = []
+players.each do |name, winnerloser|
+  winners << name if winnerloser == "winner"
 end
-# error: cant add new key into hash during iteration
+
+puts winners
 
 # 10. add the following arrays
 #   [1,2,3] and [5,9,4]
@@ -79,11 +81,29 @@ words = ["apple", "orange", "pear", "avis", "arlo", "ascot" ]
 
 words.match(/^a/)
 
-11. sum all the numbers in the following array
-  [11,4,7,8,9,100,134]
-12. Add an "s" to each word in the array except for the 2nd element in the array?
-  ["hand","feet", "knee", "table"]
-CHALLENGE
+# 11. sum all the numbers in the following array
+#   [11,4,7,8,9,100,134]
+
+sum = 0
+array = [11,4,7,8,9,100,134]
+
+array.each do |number|
+	sum += number
+end
+
+puts sum
+
+# 12. Add an "s" to each word in the array except for the 2nd element in the array?
+#   ["hand","feet", "knee", "table"]
+
+words = ["hand","feet", "knee", "table"]
+words[0] << "s"
+words[2] << "s"
+words[3] << "s"
+
+puts words
+
+# CHALLENGE
  
 word count
  
