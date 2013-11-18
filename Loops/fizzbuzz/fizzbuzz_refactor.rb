@@ -16,6 +16,3 @@ def fizzbuzz(number)
 	end
 end
 
-101.times do |number|
-	puts fizzbuzz(number)
-end
