@@ -7,10 +7,10 @@ class Integer
 
   def format
     number = self.to_s
-    # \d is for any digit; ?= checks the previous to see if matches the following
+    # \d is for any digit; ?= checks o see if matches the following pattern
     # \d{3} is for 3 digits; + is for all; $ is for last match
     commas = /(\d)(?=(\d{3})+$)/
-    number = number.gsub(commas, '\1,') # replace the first matched group with the digits and ","
+    number = number.gsub(commas, '\1,') # replace the first matched group with the digit and ","
   end
 
 end
