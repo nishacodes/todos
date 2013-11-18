@@ -53,6 +53,23 @@ class Blackjack
 			end
 	end
 
+	def hitorstay
+		case 
+			when @hitorstay == "h"
+				# @hits += 1
+				extracard = rand(1..11)
+				@handtotal += extracard
+				puts "Now you got #{extracard}. That's #{@handtotal} total."
+				blackjack?
+			when @hitorstay == "s"
+				blackjack?
+			else
+				puts "That's not an option. Please select 'h' or 's' to hit or stay."
+				@hitorstay = gets.chomp
+				hitorstay
+		end
+	end
+
 	def blackjack?
 		case 
 			when @handtotal == 21
@@ -68,23 +85,6 @@ class Blackjack
 			when @handtotal < 21 && @hitorstay!="s"
 				puts "Do you want to HIT or STAY? (h/s)"
 				@hitorstay	= gets.chomp
-				hitorstay
-		end
-	end
-
-	def hitorstay
-		case 
-			when @hitorstay == "h"
-				# @hits += 1
-				extracard = rand(1..11)
-				@handtotal += extracard
-				puts "Now you got #{extracard}. That's #{@handtotal} total."
-				blackjack?
-			when @hitorstay == "s"
-				blackjack?
-			else
-				puts "That's not an option. Please select 'h' or 's' to hit or stay."
-				@hitorstay = gets.chomp
 				hitorstay
 		end
 	end
