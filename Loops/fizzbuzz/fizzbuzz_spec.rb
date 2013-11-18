@@ -3,23 +3,23 @@ require "./fizzbuzz_refactor.rb"
 describe "#fizzbuzz" do 
 	
 	it "should return 'fizzbuzz' when number % 15 = 0" do
-	expect(fizzbuzz(75)).to eq("fizzbuzz")
+		expect(fizzbuzz(75)).to eq("fizzbuzz")
 	end
 
 	it "should return 'buzz' when number % 5 =0" do
-	expect(fizzbuzz(10)).to eq("buzz")
+		expect(fizzbuzz(10)).to eq("buzz")
 	end
 
 	it "should return 'buzz' when number % 3 =0" do
-	expect(fizzbuzz(10)).to eq("buzz")
+		expect(fizzbuzz(10)).to eq("buzz")
 	end
 
 	it "should return 'buzz' when number % 3 > 0" do
-	expect(fizzbuzz(7)).to eq(7)
+		expect(fizzbuzz(7)).to eq(7)
 	end
 
 	it "should return 'nil' when number < 0 || number > 100" do
-	expect(fizzbuzz(150)).to eq(nil)
+		expect(fizzbuzz(150)).to eq(nil)
 	end
 
 end
