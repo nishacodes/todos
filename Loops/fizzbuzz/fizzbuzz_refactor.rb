@@ -4,16 +4,18 @@ def fizzbuzz(number)
 	else
 		case 
 			when number%15==0 
-				puts "fizzbuzz"
+				"fizzbuzz"
 			when number%3==0
-				puts "fizz"
+				"fizz"
 			when number%5==0 
-				puts "buzz"
+				"buzz"
 			
 			else
-				puts number
+				number
 		end
 	end
 end
 
-fizzbuzz(11)
+101.times do |number|
+	puts fizzbuzz(number)
+end
