@@ -9,7 +9,6 @@ def fizzbuzz(number)
 				"fizz"
 			when number%5==0 
 				"buzz"
-			
 			else
 				number
 		end

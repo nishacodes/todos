@@ -18,4 +18,8 @@ describe "#fizzbuzz" do
 	expect(fizzbuzz(7)).to eq(7)
 	end
 
+	it "should return 'nil' when number < 0 || number > 100" do
+	expect(fizzbuzz(150)).to eq(nil)
+	end
+
 end
