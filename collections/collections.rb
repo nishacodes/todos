@@ -105,19 +105,20 @@ puts words
 
 # CHALLENGE
  
-word count
+# word count
  
-"The summer of tenth grade was the best summer of my life.  I went to the beach everyday and we had amazing weather.  The weather didnt really vary much and was always pretty hot although sometimes at night it would rain.  I didnt mind the rain because it would cool everything down and allow us to sleep peacefully.  Its amazing how much the weather affects your mood.  Who would have thought that I could write a whole essay just about the weather in tenth grade.  Its kind of amazing right?  Youd think for such an interesting person I might have more to say but you would be wrong"
+# "The summer of tenth grade was the best summer of my life.  I went to the beach everyday and we had amazing weather.  The weather didnt really vary much and was always pretty hot although sometimes at night it would rain.  I didnt mind the rain because it would cool everything down and allow us to sleep peacefully.  Its amazing how much the weather affects your mood.  Who would have thought that I could write a whole essay just about the weather in tenth grade.  Its kind of amazing right?  Youd think for such an interesting person I might have more to say but you would be wrong"
  
-Count how many times each word appears in my story.
-Tip: You'll need to use Hash.new(0) to do this rather than creating a hash using literal syntax like {}.
+
+# Count how many times each word appears in my story.
+# Tip: You'll need to use Hash.new(0) to do this rather than creating a hash using literal syntax like {}.
  
-song library
+# song library
  
-convert the following array of song titles
+# convert the following array of song titles
   
-  ["dave matthews band - tripping billies", "dave matthews band - #41", "calvin harris - some techno song", "avicii - some other dance song", "oasis - wonderwall", "oasis - champagne supernova"]
+#   ["dave matthews band - tripping billies", "dave matthews band - #41", "calvin harris - some techno song", "avicii - some other dance song", "oasis - wonderwall", "oasis - champagne supernova"]
  
-to a nested hash of the form
-{:artist1 => :songs => [], :artist2 => :songs => []}
-[]
+# to a nested hash of the form
+# {:artist1 => :songs => [], :artist2 => :songs => []}
+# []
