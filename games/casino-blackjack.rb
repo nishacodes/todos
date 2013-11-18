@@ -53,11 +53,12 @@ class Blackjack
 	end
 
 	def intro
-		puts "Okay, here's how it works. The object of the game is to get 21 without going over (i.e. busting)."
-		puts "If you bust, you automatically lose."
-		puts "You play against me. Whoever is closer to 21 but not over, wins."
-		puts "You'll get to see one of my cards while you play. If you want another card, you 'hit,' otherwise you 'stay'."
-		puts "When it's my turn, I have to hit as long as my hand is less than 17."
+		puts "Okay, here's how it works."
+		puts "* The object of the game is to get 21 without going over (i.e. busting)."
+		puts "* If you bust, you automatically lose."
+		puts "* You play against me. Whoever is closer to 21 but not over, wins."
+		puts "* You'll get to see one of my cards while you play. If you want another card, you 'hit,' otherwise you 'stay'."
+		puts "* When it's my turn, I have to hit as long as my hand is less than 17."
 		puts "Ready to play?"
 		deal
 	end
@@ -92,21 +93,20 @@ class Blackjack
 	def dealerhit # this loop needs fixing
 		case 
 			when @dhandtotal == 21 
-				# add action here
+				declarewinner
 			when @dhandtotal < 17
 				puts "I'll hit."
-				sleep(2)
 				extracard = rand(1..11)
 				@dhandtotal += extracard
-				puts "I got #{extracard}."
+				sleep(2)
+				puts "I got #{extracard}, so I have #{@dhandtotal}."
+				sleep(2)
 				if @dhandtotal > 21
-					puts "I bust! You win."
-					playagain
+					declarewinner
 				else
 					dealerhit
 				end
 			when @dhandtotal >= 17
-				puts "I have to stay." #fix msging
 				declarewinner
 			end
 	end
@@ -131,12 +131,13 @@ class Blackjack
 	def blackjack?
 		case 
 			when @handtotal == 21 && @hits==0
-				puts "Congratulations, you win!!!"  
+				puts "Congratulations, you got a Blackjack! You win!"  
 				playagain
 			when @handtotal > 21
-				puts "Sorry, you bust!" 
+				puts "Sorry, you bust! Now it's my turn." 
+				puts "I've got #{@dcard1} and #{@dcard2}, which is #{@dhandtotal} total."
 				dealerhit
-			when @handtotal < 21 && @hitorstay=="s"
+			when @handtotal <= 21 && @hitorstay=="s"
 				puts "Okay, you have #{@handtotal}. Now it's my turn."
 				puts "I've got #{@dcard1} and #{@dcard2}, which is #{@dhandtotal} total."
 				dealerhit
@@ -150,11 +151,31 @@ class Blackjack
 	def playagain
 		puts "Want to play again? (y/n)"
 		@deal = gets.chomp
+		puts "* NEW GAME *"
 		deal
 	end
 
 	def declarewinner
-		# add code here to compare handtotals
+		case 
+			when @dhandtotal > 21 && @handtotal <= 21
+				puts "I bust. You win!"
+			when @dhandtotal > 21 && @handtotal > 21
+				puts "We both busted. It's a push."
+			when @dhandtotal == 21 && @handtotal != 21
+				puts "I got 21! Sorry, you lose."
+			when @dhandtotal < 21
+				puts "I have #{@dhandtotal} and you have #{@handtotal}."
+				puts @dhandtotal > @handtotal ? "I win!" : "You win!"
+		end
+		reset
+		playagain
+	end
+
+	def reset
+		@hitorstay = "h"
+		@hits = 0
+		@handtotal = 0
+		@dhandtotal = 0
 	end
 
 	# def hitcount
