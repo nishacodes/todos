@@ -45,10 +45,10 @@ class Blackjack
 		@deal = gets.chomp
 		if @deal == "y" 
 			puts "Okay, great. I'll deal you two cards."
-
 			deal
 		else 
 			intro
+
 		end
 	end
 
@@ -60,7 +60,8 @@ class Blackjack
 		puts "* You'll get to see one of my cards while you play. If you want another card, you 'hit,' otherwise you 'stay'."
 		puts "* When it's my turn, I have to hit as long as my hand is less than 17."
 		puts "Ready to play?"
-		deal
+		@deal = gets.chomp
+		deal 
 	end
 	
 	def deal
@@ -72,6 +73,7 @@ class Blackjack
 				@card2 = rand(1..11)
 				@handtotal = @card1 + @card2
 				puts "You got #{@card1} and #{@card2}, which is #{@handtotal} total."
+				sleep(1)
 				dealer
 				blackjack?
 			when @deal == "n"
@@ -88,6 +90,7 @@ class Blackjack
 		@dcard2 = rand(1..11)
 		@dhandtotal = @dcard1 + @dcard2
 		puts "The dealer is showing a #{@dcard1}."
+		sleep(1)
 	end
 
 	def dealerhit # this loop needs fixing
@@ -133,12 +136,19 @@ class Blackjack
 			when @handtotal == 21 && @hits==0
 				puts "Congratulations, you got a Blackjack! You win!"  
 				playagain
+			when @handtotal == 21 && @hits!=0
+				puts "Okay, you have #{@handtotal}. Now it's my turn."
+				sleep(1)
+				puts "I've got #{@dcard1} and #{@dcard2}, which is #{@dhandtotal} total."
+				dealerhit
 			when @handtotal > 21
 				puts "Sorry, you bust! Now it's my turn." 
+				sleep(1)
 				puts "I've got #{@dcard1} and #{@dcard2}, which is #{@dhandtotal} total."
 				dealerhit
 			when @handtotal <= 21 && @hitorstay=="s"
 				puts "Okay, you have #{@handtotal}. Now it's my turn."
+				sleep(1)
 				puts "I've got #{@dcard1} and #{@dcard2}, which is #{@dhandtotal} total."
 				dealerhit
 			when @handtotal < 21 && @hitorstay!="s"
@@ -161,12 +171,14 @@ class Blackjack
 				puts "I bust. You win!"
 			when @dhandtotal > 21 && @handtotal > 21
 				puts "We both busted. It's a push."
+			when @dhandtotal < 21 && @handtotal > 21
+				puts "You bust. I win."
 			when @dhandtotal == 21 && @handtotal != 21
 				puts "I got 21! Sorry, you lose."
-			when @dhandtotal < 21
+			when @dhandtotal < 21 
 				puts "I have #{@dhandtotal} and you have #{@handtotal}."
 				puts @dhandtotal > @handtotal ? "I win!" : "You win!"
-		end
+		end                 
 		reset
 		playagain
 	end
