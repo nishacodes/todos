@@ -4,12 +4,9 @@ card
 blackjack
 
 describe "#card" do
-	it "should generate a number greater than 0" do
-		expect(card > 0).to be_true
-	end
-	
-	it "should generate a number less than 12" do
-		expect(card < 12).to be_true
+	it "should generate a number greater than 0 and less than 12" do
+		expect(card).to be > 0
+		expect(card).to be < 12
 	end
 
 end
