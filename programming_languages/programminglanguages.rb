@@ -38,15 +38,18 @@ languages_new = {}
 languages.each do |style, languagehash| 
   languagehash.each do |language, hash|
     languages_new[language] = hash
-  end
-end
-
-
-languages_new.each do |language, hash|
-  languages.each do |style, languagehash|
+    languages_new.each do |language, hash|
       hash[:style] ||= []
+    end
   end
 end
+
+
+# languages_new.each do |language, hash|
+#   languages.each do |style, languagehash|
+#       hash[:style] ||= []
+#   end
+# end
 
 languages.each do |style, languagehash|
   languagehash.each do |language, hash|
