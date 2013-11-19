@@ -8,7 +8,8 @@ Collections Practice
 # 2. sort the following array in descending order
 #   ["blake", "ashley", "scott"]
 
-["blake", "ashley", "scott"].sort { |x,y| y <=> x } 
+["blake", "ashley", "scott"].sort { |x,y| y <=> x }  # can also use .sort.reverse
+
 
 # 3. put the following array in reverse order
 #   ["blake", "ashley", "scott"]
@@ -30,7 +31,7 @@ puts ["blake", "ashley", "scott"]
 #   should transform into
 #   ["blake", "scott", "ashley"]
 
-array = ["blake", "ashley", "scott"]
+array = ["blake", "ashley", "scott"]  # can also use replace method
 array.delete("ashley") 
 array << "ashley"
 
@@ -47,6 +48,7 @@ hash.each do |name, name2|
 end
 
 puts hash
+
 
 # 8. create a hash with two keys, "greater_than_10", "less_than_10" and their values will be an array
 #  of any numbers greater than 10 or less than 10 in the following array
@@ -74,12 +76,25 @@ puts winners
 
 [1,2,3].concat([5,9,4])
 
-11. find all words that begin with "a" in the following array
-  ["apple", "orange", "pear", "avis", "arlo", "ascot" ]
+# another solution
+
+[1,2,3] + [5,9,4]
+
+# 11. find all words that begin with "a" in the following array
+#   ["apple", "orange", "pear", "avis", "arlo", "ascot" ]
 
 words = ["apple", "orange", "pear", "avis", "arlo", "ascot" ]
 
-words.match(/^a/)
+words.select do |item|
+	item[0] == "a"
+end
+
+# or this
+words = ["apple", "orange", "pear", "avis", "arlo", "ascot" ]
+
+words.select do |item|
+	(/^a/i).match(item) # ^ only means not a if a is in []. i means case insensitive
+end
 
 # 11. sum all the numbers in the following array
 #   [11,4,7,8,9,100,134]
