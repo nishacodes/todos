@@ -43,4 +43,6 @@ class Igglybuff
 end
 
 
-nisha = Igglybuff.new
+kate = Igglybuff.new
+
+# http://bulbapedia.bulbagarden.net/wiki/Spritzee_(Pok%C3%A9mon)#Pok.C3.A9dex_entries
