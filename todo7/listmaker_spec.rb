@@ -10,6 +10,6 @@ describe "#make_list" do
 	end
 
 	it "should return an empty array if given an empty array" do
-		expect(make_list([])).to eq([])
+		expect(make_list([1,nil,3])).to eq(["1. 1", "2. 3"])
 	end
 end

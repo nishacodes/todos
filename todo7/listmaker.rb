@@ -9,6 +9,7 @@
 # e.g make_list(["ich", "ni", "san"]) #=> ["1. ich", "2. ni", "3. san"]
 
 def make_list(arr)
+	arr.compact!
 	arr.collect! do |item|
 			"#{arr.find_index(item)+1}. " << item.to_s
 	end
