@@ -33,16 +33,31 @@ languages = {
   }
 }
 
+
 languages_new = {}
 
-languages.each do |style, languagehash| 
+languages.each do |style, languagehash|
   languagehash.each do |language, hash|
-    languages_new[language] = hash
-    languages_new.each do |language, hash|
-      hash[:style] ||= []
-    end
+    languages_new[language] ||= hash
+    languages_new [language][:style] ||= []
+    languages_new [language][:style] << style
   end
 end
+
+puts languages_new
+
+# OLD SOLUTION
+
+# languages_new = {}
+
+# languages.each do |style, languagehash| 
+#   languagehash.each do |language, hash|
+#     languages_new[language] = hash
+#     languages_new.each do |language, hash|
+#       hash[:style] ||= []
+#     end
+#   end
+# end
 
 
 # languages_new.each do |language, hash|
@@ -51,13 +66,15 @@ end
 #   end
 # end
 
-languages.each do |style, languagehash|
-  languagehash.each do |language, hash|
-      languages_new[language][:style] << style 
-  end
-end
+# languages.each do |style, languagehash|
+#   languagehash.each do |language, hash|
+#       languages_new[language][:style] << style 
+#   end
+# end
 
-puts languages_new
+
+
+
 
 
 # I would like you to reformat the nested structure to be of the following form
