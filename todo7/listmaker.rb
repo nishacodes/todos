@@ -8,3 +8,11 @@
 
 # e.g make_list(["ich", "ni", "san"]) #=> ["1. ich", "2. ni", "3. san"]
 
+def make_list(arr)
+	arr.collect! do |item|
+			"#{arr.find_index(item)+1}. " << item.to_s
+	end
+end
+
+make_list([1,2,3])
+make_list(["cat","dog",342])
