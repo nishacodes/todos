@@ -11,9 +11,9 @@
 def make_list(arr)
 	arr.compact!
 	arr.collect! do |item|
-			"#{arr.find_index(item)+1}. " << item.to_s
+			"#{arr.find_index(item)+1}. #{item}"
 	end
 end
 
-make_list([1,2,3])
-make_list(["cat","dog",342])
+
+
