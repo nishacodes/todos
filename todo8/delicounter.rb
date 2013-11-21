@@ -15,6 +15,15 @@ class Deli
 	def now_serving
 		@name = @line[0].split(" ").last
 		@name
+		shift_line
+	end
+
+	def shift_line
+		@line.delete_at(0)
+		@line.each_with_index do |person, index|
+			person.gsub!(/\d+/,"#{index+1}")
+		end
+		@line
 	end
 
 end
