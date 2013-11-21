@@ -1,8 +1,8 @@
 class Igglybuff
 	attr_reader :female_ratio, :male_ratio
 	attr_accessor :level, :type, :abilities, :catch_rate, :entry, :hp, :exp, :friendship
-
-	LEARNSET = {  "Sing" => "Start",
+	# table class="roundy" <tbody> <tr> <td> # the first td is the level, the second is the move
+	LEARNSET = {  "Sing" => "Start",  
                 "Charm" => "Start",
                 "Defense Curl" => 5,
                 "Pound" => 9,
