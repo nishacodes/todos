@@ -23,7 +23,7 @@ RSpec.configure do |config|
   config.formatter = :progress # :progress, :html, :textmate
 end
 
-require_relative './anagram'
+require './anagrams'
 
 describe 'Anagram' do 
   it 'should detect no matches' do
