@@ -1,21 +1,34 @@
 class Anagram
-	attr_reader :word
+	attr_accessor :word, :regexword, :anagrams
 
 	def initialize(word)
 		@word = word
+		@regexword = ""
 	end
 
-	def match(wordlist)
-		anagrams = wordlist.select do |eachword|
-			(/word/).match(eachword)
+	def wordregex
+		wordarray = word.split(//)
+		@regexword = "/^"
+		wordarray.each do |letter|
+			@regexword << "(?!.*#{letter}.*#{letter})"
 		end
-			
+		@regexword += "[#{@word}]*$/"
+	end
+
+	# need to store matches in anagrams...
+	def matching(wordlist)
+		matches = wordlist.select do |eachword|
+			@regexword.match(eachword)
+		end
+		@anagrams = matches[0]
 	end
 
 end
 
 detector = Anagram.new("diaper")
-anagram = detector.match(["daiper","adadgf","addges"])
-anagram = detector.match(["wrod","adadgf","addges"])
-anagram = detector.match(["word","adadgf","addges"])
-anagram
+detector.wordregex
+detector.matching(["daiper","adadgf","addges"])
+
+
+puts detector.regexword
+puts detector.anagrams
