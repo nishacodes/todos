@@ -5,5 +5,5 @@ def key_for_min_value(hash)
   keys = hash.collect do |key, num|
   	key if num == min_value
   end
-  keys.compact!
+  keys
 end
