@@ -1,6 +1,6 @@
 #Write a method to shorten a string based on the allowed substitutes
 
-substitutions = {
+SUBSTITUTIONS = {
 	"to" => "2",
 	"two" => "2",
 	"too" => "2",
@@ -18,10 +18,14 @@ tweets = [
 "GUISEEEEE this is so fun! I'm tweeting for you guys and this tweet is SOOOO long it's gonna be way more than you would think twitter can handle, so shorten it up you know what I mean? I just can never tell how long to keep typing!"
 ]
 
+
+def shorten(tweets)
 	tweets.each do |tweet|
-		puts tweet.split(/[\s,\.!\?]/).each do |word|
-			substitutions.each do |longword, shortword|
-				if longword == wor
-			end
+		shortened_tweets = tweet.split(/(?=\b)/).collect do |word|
+			SUBSTITUTIONS[word] || word
 		end
+		puts shortened_tweets.join
 	end
+end
+
+shorten(tweets)
