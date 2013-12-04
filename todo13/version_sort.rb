@@ -1,3 +1,5 @@
+require 'debugger'
+
 filenames = [
   "foo-1.10.2.ext",
   "foo-1.11.ext",
@@ -49,85 +51,47 @@ version_sorted_filenames = [
   "foo-100.ext",
 ]
 
+class String
+  # don't turn empty strings into an integer
+  def to_int
+    self.to_i unless self == ""
+  end
+end
+
 class Array
-def version_sort
-  to_sort = []
-  new_array = []
+  def version_sort
+    to_sort = []
+    new_array = []
 
-  self.each do |file|
-    to_sort << (/foo-(\d*)\.{0,1}(\d*[a-z]{0,1})\.{0,1}(\d*)\.ext/).match(file)
-  end
-
-  sorted = to_sort.sort do |a,b|
-    if(a[1].to_i <=> b[1].to_i) == 0
-      if (a[2].to_i <=> b[2].to_i) == 0
-        (a[3].to_i <=> b[3].to_i)
-      else
-        (a[2].to_i <=> b[2].to_i)
-      end
-    else
-      (a[1].to_i <=> b[1].to_i)
+    self.each do |file|
+      to_sort << (/foo-(\d*)\.{0,1}(\d*)\.{0,1}(\d*)([a-z]{0,1})\.ext/).match(file)
     end
+    puts to_sort
+    sorted = to_sort.sort do |a,b|
+      if(a[1].to_int <=> b[1].to_int) == 0
+        if (a[2].to_int <=> b[2].to_int) == 0
+          if (a[3].to_int <=> b[3].to_int) == 0
+            (a[4] <=> b[4])
+          else
+            (a[3].to_i <=> b[3].to_i)
+          end
+        else 
+          (a[2].to_i <=> b[2].to_i)
+        end
+      else
+        (a[1].to_i <=> b[1].to_i)
+      end
+    end
+    sorted.each do |array|
+      new_array << array[0]
+    end
+    new_array
   end
-  sorted.each do |array|
-    new_array << array[0]
+    # new_array
+end
+describe "hello" do
+  it "should" do
+    filenames.version_sort.should eq(version_sorted_filenames)
   end
-  p new_array
+  
 end
-end
-
-filenames.version_sort
-
-# class Array
-#   def version_sort
-#     split_version = self.collect do |filename|
-#       regex = /(foo-)(?<number>.*)(.ext)/
-#       m = regex.match(filename)
-#       m[:number].split(".")
-#     end
-    
-#     split_version.select do |array|
-#       while array.size < 3
-#         array << ""
-#       end
-#     end
-        
-#     sorted_version = split_version.sort do |a,b|
-#       if (a[0] <=> b[0]) == 0
-#         if (a[1] <=> b[1]) == 0
-#           a[2] <=> b[2]
-#         else
-#           a[0] <=> b[0]
-#         end
-#       else
-#         a[1] <=> b[1]
-#       end
-#     # p sorted_version
-#     end
-#   end
-# end
-
-    # sorted_split_version = split_version.sort do |a,b|
-    #   if (a[0] <=> b[0]) == 0
-    #     if (a[1] <=> b[1]) == 0
-    #       a[2] <=> b[2]
-    #     else
-    #       a[1] <=> b[1]
-    #     end
-    #   else
-    #     a[2] <=> b[2]
-    #   end
-    # p sorted_split_version
-
-
-    # split_version is an array of arrays of all the versions split at the decimal
-    # new_array = []
-    # new_array = split_version.select do |version_array|
-    #   version_array.each_with_index do |number, index|  
-      
-    #   end
-    # end
-#   # end
-# end
-
-filenames.version_sort
