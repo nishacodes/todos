@@ -12,7 +12,7 @@ class Runner
     while @command.downcase != "exit" do
       puts "Enter a command to continue. Type 'help' for a list of commands."
       @command = get_command
-      run_command(command) unless @command.downcase == "exit"
+      run_command(command) # unless @command.downcase == "exit"
     end
   end
 
@@ -34,7 +34,7 @@ class Runner
     help += "'help' - shows this menu\n"
     help += "'list' - lists the whole song library\n"
     help += "or you can enter an artist's name to show that artist's songs\n"
-    help = "or you can enter an artist's name to show that artist's songs\n"
+    help += "or you can enter an artist's name to show that artist's songs\n"
     puts help
   end
 end
