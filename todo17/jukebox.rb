@@ -15,6 +15,17 @@ def list_library
   end
 end
 
+def list_artist(artist, album_hash)
+   artist_list = "\n---------------\n"
+   artist_list += "#{artist}:\n"
+   artist_list += "---------------"
+   album_hash[:albums].each do |album_name, songs_hash|
+     artist_list += "\n#{album_name}:\n\t"
+     artist_list += songs_hash[:songs].join("\n\t")
+   end
+   artist_list
+end
+
 def parse_command(command)
   parse_artist(command, full_library) || play_song(command, full_library) || not_found(command)
 end
@@ -52,17 +63,6 @@ def play_song(command, lib)
     end
   end
   false
-end
-
-def list_artist(artist, album_hash)
-   artist_list = "\n---------------\n"
-   artist_list += "#{artist}:\n"
-   artist_list += "---------------"
-   album_hash[:albums].each do |album_name, songs_hash|
-     artist_list += "\n#{album_name}:\n\t"
-     artist_list += songs_hash[:songs].join("\n\t")
-   end
-   artist_list
 end
 
 def not_found(command)
