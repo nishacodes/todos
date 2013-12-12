@@ -1,4 +1,5 @@
 require_relative './jukebox.rb'
+require_relative './song_library.rb'
 
 class Runner
   attr_accessor :command

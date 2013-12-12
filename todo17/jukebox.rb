@@ -6,6 +6,7 @@ def jukebox(command)
   else
     parse_command(command)
   end
+
 end
 
 def list_library
@@ -19,11 +20,22 @@ def list_artist(artist, album_hash)
    artist_list = "\n---------------\n"
    artist_list += "#{artist}:\n"
    artist_list += "---------------"
-   album_hash[:albums].each do |album_name, songs_hash|
-     artist_list += "\n#{album_name}:\n\t"
-     artist_list += songs_hash[:songs].join("\n\t")
-   end
-   artist_list
+   if command == "list"
+    album_hash[:albums].each do |album_name, songs_hash|
+      artist_list += "\n#{album_name}:\n\t"
+      artist_list += songs_hash[:songs].join("\n\t")
+    end
+    artist_list
+   # print the following if user enters an artist
+   else
+    album_hash[artist][:albums].each do |album_name, songs_hash|
+      artist_list += "\n#{album_name}:\n\t"
+      artist_list += songs_hash[:songs].join("\n\t")
+    end
+    artist_list
+  end
+
+   
 end
 
 def parse_command(command)
