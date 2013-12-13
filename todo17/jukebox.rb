@@ -41,7 +41,7 @@ def parse_command(command)
 end
 
 def parse_artist(command, lib)
-  cmd = command.to_sym
+  cmd = command.downcase.to_sym
   parsed = false
   if lib.has_key?(cmd)
     puts list_artist(command, lib[cmd])
