@@ -52,7 +52,7 @@ INSERT INTO choices (content, correct, question_id) value
 ("CatDog",1,2),
 ("A unicorn",0,2),
 ("Betty Spaghetti",0,2),
-("Dolly the cloned sheep",0,2),
+("Dolly the cloned sheep",0,2), 
 
 ("What does it pay?",0,3),
 ("Of course, man.",0,3),
