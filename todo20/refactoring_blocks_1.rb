@@ -31,26 +31,26 @@ def pay_by(order)
 end
 
 def pay_by_visa(order,ccn)
-  pay_by do |order| 
+  pay_by(order) do |order| 
     order.payment :type => :visa , :ccn => ccn
     order.verify_payment
   end
 end
 
 def pay_by_check(order)
-  pay_by do |order| 
+  pay_by(order) do |order| 
     order.payment :type => :check , :signed => true 
   end
 end
 
 def pay_by_cash(order)
-  pay_by do |order| 
+  pay_by(order) do |order| 
     order.payment :type => :cash
   end
 end
 
-def pay_by_store_credit(order)
-  pay_by do |order| 
+def pay_by_store_credit(order,current_user)
+  pay_by(order) do |order| 
     order.payment :type => :store_credit
     current_user.store_credit -= order.cost   # current_user is a method with no params (ie, the customer)
   end
