@@ -22,6 +22,10 @@ class Dog
     self.id = self.db.last_id if self.db.last_id > 0
   end
 
+  def saved?
+    self.id.nil? 
+  end
+
   def update
     db.query("UPDATE dogs SET name='#{self.name}', color='#{self.color}' WHERE id = #{self.id};") 
   end
@@ -52,7 +56,8 @@ class Dog
 
   def self.create_from_db(id)
     result = db.query("SELECT * FROM dog WHERE id = #{id}")
-    Dog.new = result.first[:name],result.first[:color]
+    row = result.first
+    Dog.new(row[:name],row[:color]).save
   end
 
   def self.db
