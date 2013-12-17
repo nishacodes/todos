@@ -13,7 +13,7 @@ class Dog
 
   def insert_and_save
     db.query("INSERT INTO dogs (name, color) VALUES ('#{self.name}','#{self.color}');")
-    self.id =  self.db.last_id if self.db.last_id > 0
+    self.id = self.db.last_id if self.db.last_id > 0
   end
 
   def update
@@ -28,6 +28,18 @@ class Dog
     db.query("SELECT * FROM dogs WHERE id = #{id};")
   end
 
+  def self.find_by_name(dog_name)
+    db.query("SELECT * FROM dogs WHERE name = '#{dog_name}';")
+  end
+
+  def self.find_by_color(dog_color)
+    db.query("SELECT * FROM dogs WHERE color = '#{dog_color}';")
+  end
+
+  def self.find_by_id(dog_id)
+    db.query("SELECT * FROM dogs WHERE id = '#{dog_id}';")
+  end
+
   def self.db
     @@db
   end
@@ -38,34 +50,22 @@ class Dog
 
 end
 
-# dog2 = Dog.new("Sandy", "brown")
-# dog2.insert_and_save
-# dog2.id
-# dog2.delete
+dog1 = Dog.new("Sandy", "brown")
+dog1.insert_and_save
+dog1.id
 debugger
-
+dog1.name = "fluffy"
+dog1.update
+debugger
+dog1.delete
 puts "hi"
 
 
 
 
 # class Dog
-#   attr_accessor :name, :color, :id
 
-#     @@db = Mysql2::Client.new(:host => '192.168.2.2',:username => "student",:password => "mypass",:database => "wizards")
-  
-#   def initialize(name, color)
-#     @name = name
-#     @color = color
-#   end
 
-#   def self.db
-#     @@db
-#   end
-
-#   def db
-#     @@db
-#   end
 
 #   def self.find(id)
 #     db.query("SELECT * FROM dogs WHERE id = #{'id'}")
@@ -76,9 +76,6 @@ puts "hi"
 #     end
 #   end
 
-#   def insert
-#     db.query("INSERT INTO dogs (name, color) values ('#{self.name}', '#{self.color}')")
-#   end
 
 #   def self.new_from_db(row) # create a new instance from a query result that's in the form of a hash
 #     dog = Dog.new(row[:name],row[:color])
@@ -109,9 +106,6 @@ puts "hi"
 #       ")
 #   end
 
-#   def mark_as_saved!
-#     self.id = self.db.last_id if self.db.last_id > 0
-#   end
 
 #   def saved?
 #     return true if self.id.nil? 
