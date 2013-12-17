@@ -5,14 +5,20 @@ class Dog
   attr_accessor :color, :name, :id
 
   @@db = Mysql2::Client.new(:host => "localhost", :username => "root", :database => "dogs")
+  DOGS = []
 
   def initialize name, color
     @name = name
     @color = color
+    DOGS << self
   end
 
-  def insert_and_save
+  def insert
     db.query("INSERT INTO dogs (name, color) VALUES ('#{self.name}','#{self.color}');")
+    save
+  end
+
+  def save
     self.id = self.db.last_id if self.db.last_id > 0
   end
 
@@ -44,9 +50,11 @@ class Dog
     db.query("SELECT * FROM dogs WHERE id = '#{dog_id}';")
   end
 
-  def self.create_from_db(row_hash)
-    Dog.new(row[:name],row[:color])
+  def self.create_from_db(id)
+    result = db.query("SELECT * FROM dog WHERE id = #{id}")
+    Dog.new = result.first[:name],result.first[:color]
   end
+
   def self.db
     @@db
   end
@@ -65,9 +73,12 @@ debugger
 
 dog1.name = "fluffy"
 dog1.update
-
-debugger
 dog1.delete!
+
+Dog.create_from_db(2)
+debugger
+DOGS
+debugger
 puts "hi"
 
 
