@@ -11,12 +11,17 @@ class Dog
     @color = color
   end
 
-  def insert
+  def insert_and_save
     db.query("INSERT INTO dogs (name, color) VALUES ('#{self.name}','#{self.color}');")
+    self.id =  self.db.last_id if self.db.last_id > 0
   end
 
   def update
-    # db.query("UPDATE dogs SET name='#{self.name}', color='#{self.color}' WHERE id = #{self.id};") 
+    db.query("UPDATE dogs SET name='#{self.name}', color='#{self.color}' WHERE id = #{self.id};") 
+  end
+
+  def delete
+    db.query("DELETE FROM dogs WHERE id = #{self.id};") 
   end
 
   def self.find(id)
@@ -33,11 +38,12 @@ class Dog
 
 end
 
-dog2 = Dog.new("Sandy", "brown")
-dog2.insert
-dog2.update
-dog = Dog.find(1)
+# dog2 = Dog.new("Sandy", "brown")
+# dog2.insert_and_save
+# dog2.id
+# dog2.delete
 debugger
+
 puts "hi"
 
 
