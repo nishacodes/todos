@@ -20,8 +20,12 @@ class Dog
     db.query("UPDATE dogs SET name='#{self.name}', color='#{self.color}' WHERE id = #{self.id};") 
   end
 
-  def delete
+  def delete!
     db.query("DELETE FROM dogs WHERE id = #{self.id};") 
+  end
+
+  def self.delete_all!
+    db.query("TRUNCATE dogs;")
   end
 
   def self.find(id)
@@ -40,6 +44,9 @@ class Dog
     db.query("SELECT * FROM dogs WHERE id = '#{dog_id}';")
   end
 
+  def self.create_from_db(row_hash)
+    Dog.new(row[:name],row[:color])
+  end
   def self.db
     @@db
   end
@@ -50,22 +57,23 @@ class Dog
 
 end
 
+Dog.delete_all!
 dog1 = Dog.new("Sandy", "brown")
 dog1.insert_and_save
 dog1.id
 debugger
+
 dog1.name = "fluffy"
 dog1.update
+
 debugger
-dog1.delete
+dog1.delete!
 puts "hi"
 
 
 
 
 # class Dog
-
-
 
 #   def self.find(id)
 #     db.query("SELECT * FROM dogs WHERE id = #{'id'}")
