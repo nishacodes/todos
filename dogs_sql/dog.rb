@@ -5,20 +5,18 @@ class Dog
   attr_accessor :color, :name, :id
 
   @@db = Mysql2::Client.new(:host => "localhost", :username => "root", :database => "dogs")
-  DOGS = []
 
   def initialize name, color
     @name = name
     @color = color
-    DOGS << self
   end
 
   def insert
     db.query("INSERT INTO dogs (name, color) VALUES ('#{self.name}','#{self.color}');")
-    save
+    save_id
   end
 
-  def save
+  def save_id
     self.id = self.db.last_id if self.db.last_id > 0
   end
 
@@ -54,10 +52,12 @@ class Dog
     db.query("SELECT * FROM dogs WHERE id = '#{dog_id}';")
   end
 
-  def self.create_from_db(id)
-    result = db.query("SELECT * FROM dog WHERE id = #{id}")
+  def self.create_from_db(dog_id)
+    result = db.query("SELECT * FROM dogs WHERE id = #{dog_id}")
+    # debugger
     row = result.first
-    Dog.new(row[:name],row[:color]).save
+    # debugger
+    dog1 = Dog.new(row["name"],row["color"]).save_id
   end
 
   def self.db
@@ -70,72 +70,3 @@ class Dog
 
 end
 
-Dog.delete_all!
-dog1 = Dog.new("Sandy", "brown")
-dog1.insert_and_save
-dog1.id
-debugger
-
-dog1.name = "fluffy"
-dog1.update
-dog1.delete!
-
-Dog.create_from_db(2)
-debugger
-DOGS
-debugger
-puts "hi"
-
-
-
-
-# class Dog
-
-#   def self.find(id)
-#     db.query("SELECT * FROM dogs WHERE id = #{'id'}")
-#     if results.first.nil?
-#       return "whimper"
-#     else
-#       return self.new_from_db(results.first)
-#     end
-#   end
-
-
-#   def self.new_from_db(row) # create a new instance from a query result that's in the form of a hash
-#     dog = Dog.new(row[:name],row[:color])
-#   end
-
-#   def self.find_by_name(name)
-#     self.db.query("
-#       select *
-#       from dogs
-#       where name - '#{name}'
-#       ")
-#     if results.first.nil?
-#       return "whimper"
-#     else
-#       return self.new_from_db(results.first)
-#     end
-#   end
-
-#   def self.wrap_results results
-
-#   end
-  
-#   def update
-#     self.db.query("
-#       UPDATE dogs
-#       SET name = '#{self.name}', color='#{self.color}'
-#       WHERE id = #{self.id}
-#       ")
-#   end
-
-
-#   def saved?
-#     return true if self.id.nil? 
-#   end
-
-#   def save
-#     self.saved? ? self.update : self.insert
-#   end
-# end
