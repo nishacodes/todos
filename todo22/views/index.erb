@@ -1,3 +1,9 @@
 <div class="center">
-  <h1><%= @birthday_today %></h1>
+  
+  <% if @birthday == @today %>
+    <h1><%= @birthday_today %></h1>
+    <img src="/images/confetti.gif">
+  <% else %>  
+    <h1><%= @birthday_today %></h1>
+  <% end %>
 </div>
