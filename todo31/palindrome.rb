@@ -9,7 +9,7 @@ def longest_palindrome(string)
   # collect all sequential combinations in 2 arrays
   length.times do |i|
     n = 0
-    while n < length
+    while n <= i
       array1 << string[n..i]
       array2 << reverse_str[n..i]
       
