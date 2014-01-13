@@ -1,8 +1,8 @@
 Todo34::Application.routes.draw do
-  resources :tweets
-
-
-  resources :users
+  
+  resources :users do
+    resources :tweets
+  end
 
 
   # The priority is based upon order of creation:
