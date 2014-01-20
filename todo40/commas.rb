@@ -1,7 +1,7 @@
 # Separate numbers with a comma each three digits.
  
 def separate_with_comma(n)
-  #code goes here
+  n.to_s.reverse.gsub(/(.{3})/, '\1,').reverse
 end
  
 separate_with_comma(1) #=> "1" 
